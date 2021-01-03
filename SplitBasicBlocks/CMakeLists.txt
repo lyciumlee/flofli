@@ -17,9 +17,9 @@ list(APPEND CMAKE_PREFIX_PATH "${LT_LLVM_INSTALL_DIR}/lib/cmake/llvm/")
 
 find_package(LLVM 11.0.0 REQUIRED CONFIG)
 
-# HelloWorld includes headers from LLVM - update the include paths accordingly
+# SplitBlocks includes headers from LLVM - update the include paths accordingly
 include_directories(SYSTEM ${LLVM_INCLUDE_DIRS})
-
+include_directories("${CMAKE_CURRENT_SOURCE_DIR}/../include")
 #===============================================================================
 # 2. LLVM-TUTOR BUILD CONFIGURATION
 #===============================================================================
@@ -37,14 +37,18 @@ endif()
 #===============================================================================
 
 
-message("hello!")
-add_library(HelloWorld SHARED HelloWorld.cpp)
+
+add_library(SplitBlocks SHARED 
+  SplitBasicBlocks.cpp
+  CryptoUtils.cpp
+  Utils.cpp
+  )
 
 target_include_directories(
-  HelloWorld INTERFACE
+  SplitBlocks INTERFACE
   "${CMAKE_CURRENT_SOURCE_DIR}/../include")
 
 # Allow undefined symbols in shared objects on Darwin (this is the default
 # behaviour on Linux)
-target_link_libraries(HelloWorld
+target_link_libraries(SplitBlocks
   "$<$<PLATFORM_ID:Darwin>:-undefined dynamic_lookup>")
