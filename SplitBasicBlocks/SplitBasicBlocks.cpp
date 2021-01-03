@@ -60,10 +60,9 @@ bool SplitBasicBlock::runOnFunction(Function &F) {
   Function *tmp = &F;
 
   // Do we obfuscate
-  if (toObfuscate(flag, tmp, "split")) {
-    split(tmp);
-    ++Split;
-  }
+  split(tmp);
+  ++Split;
+  
 
   return false;
 }
@@ -117,8 +116,9 @@ void SplitBasicBlock::split(Function *f) {
       if (toSplit->size() < 2)
         continue;
 
-      DEBUG_WITH_TYPE(DEBUG_TYPE, outs() << (*it) << "\n");
+      errs() << (*it) << "\n";
       toSplit = toSplit->splitBasicBlock(it, toSplit->getName() + ".split");
+      errs() << toSplit->getName() << "\n";
     }
 
     ++Split;
