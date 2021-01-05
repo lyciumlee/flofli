@@ -1,9 +1,15 @@
-llvm-mini-Passes-build-cmake
+llvm-mini-Passes-build-cmake and flofli
 =========
-source https://github.com/banach-space/llvm-tutor
+source base on https://github.com/banach-space/llvm-tutor .
 
-This project aims to protect your software easily.
-It will let your software hard to analyse. But it may let your software slow.
+# What is the flofli
+flofli is an opensource project which aims to protect your software easily.
+flofli is the abbreviation for free llvm obuscator for llvm ir.
+It will let your software hard to analyse. But obuscation may let your software slow.
+
+# plan
+1. I will dissect other famous llvm obuscator to let the obfuscator model compile easylily.
+2. The project can compile all obfuscator independently. Other obfuscator need compile all llvm and clang source code.
 
 # env
 llvm 11
