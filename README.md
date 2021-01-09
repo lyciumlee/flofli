@@ -46,3 +46,12 @@ opt-11 -load ./libFlattening.so --flattening < test.bc -o test_split.bc
 opt-11 --view-cfg ./test_split.bc
 ```
 ![](https://github.com/lyciumlee/lyciumlee.github.io/blob/master/img/other_pics/2.png)
+
+## Flattening
+Note: Flattening need cfg which have two or more blocks.
+```
+clang-11 -c -emit-llvm test.c -o test.bc
+opt-11 -load ./libBogusControlFlow.so --boguscf --bcf_prob=100 ./test_split.ll -o ./test_bogus.bc
+opt-11 --view-cfg ./test_bogus.bc
+```
+![](https://github.com/lyciumlee/lyciumlee.github.io/blob/master/img/other_pics/3.png)
